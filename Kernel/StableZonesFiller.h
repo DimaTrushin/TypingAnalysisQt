@@ -153,7 +153,7 @@ fillMaxMinPairs(const TApproximation& Approximation) {
   // TO DO
   // log the execution time
   findMaxMinPairsParallel(Approximation, RoughMaxMinPairs, &MaxMinIntervals);
-  pMarkedIntervals->setWithIntervalContainer(MaxMinIntervals);
+  pMarkedIntervals_->setWithIntervalContainer(MaxMinIntervals);
 }
 //---------------------------------------------------------------------------
 

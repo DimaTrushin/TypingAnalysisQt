@@ -265,7 +265,7 @@ bool CDiscreteInterval<TType>::isCoveredBy(
   const CDiscreteInterval& Interval) const {
   if(isEmpty())
     return true;
-  return Interval.First_ <= First_ && Last_ <= Interval.Last_;
+  return Interval.First_ <= CBase::First_ && CBase::Last_ <= Interval.Last_;
 }
 //---------------------------------------------------------------------------
 
@@ -300,9 +300,9 @@ size_t CDiscreteInterval<TType>::getNumberOfComponentsInDifference(
     return 1;
 
   size_t result = 0;
-  if (First_ < Interval.First_)
+  if (CBase::First_ < Interval.First_)
     ++result;
-  if (Interval.Last_ < Last_)
+  if (Interval.Last_ < CBase::Last_)
     ++result;
   return result;
 }
@@ -332,11 +332,11 @@ CDiscreteInterval<TType>::getLeftComponentOfDifference(
   const CDiscreteInterval& Interval) const {
   if (Interval.isEmpty())
     return *this;
-  if (Interval.First_ <= First_)
+  if (Interval.First_ <= CBase::First_)
     return getEmptyInterval();
   if(!isIntersecting(Interval))
     return *this;
-  return CDiscreteInterval(First_, Interval.First_ - 1);
+  return CDiscreteInterval(CBase::First_, Interval.First_ - 1);
 }
 //---------------------------------------------------------------------------
 
@@ -346,11 +346,11 @@ CDiscreteInterval<TType>::getRightComponentOfDifference(
   const CDiscreteInterval& Interval) const {
   // If I subtract an empty interval
   // the difference is considered as a left component
-  if (Last_ <= Interval.Last_ || Interval.isEmpty())
+  if (CBase::Last_ <= Interval.Last_ || Interval.isEmpty())
     return getEmptyInterval();
   if(!isIntersecting(Interval))
     return *this;
-  return CDiscreteInterval(Interval.Last_ + 1, Last_);
+  return CDiscreteInterval(Interval.Last_ + 1, CBase::Last_);
 }
 //---------------------------------------------------------------------------
 
@@ -365,28 +365,28 @@ CDiscreteInterval<TType> CDiscreteInterval<TType>::getEmptyInterval() {
 template<class TType>
 void CDiscreteInterval<TType>::setLastToMax(
   const CDiscreteInterval& Interval) {
-  Last_ = std::max(Last_, Interval.Last_);
+  CBase::Last_ = std::max(CBase::Last_, Interval.Last_);
 }
 //---------------------------------------------------------------------------
 
 template<class TType>
 void CDiscreteInterval<TType>::setLastToMin(
   const CDiscreteInterval& Interval) {
-  Last_ = std::min(Last_, Interval.Last_);
+  CBase::Last_ = std::min(CBase::Last_, Interval.Last_);
 }
 //---------------------------------------------------------------------------
 
 template<class TType>
 void CDiscreteInterval<TType>::setFirstToMax(
   const CDiscreteInterval& Interval) {
-  First_ = std::max(First_, Interval.First_);
+  CBase::First_ = std::max(CBase::First_, Interval.First_);
 }
 //---------------------------------------------------------------------------
 
 template<class TType>
 void CDiscreteInterval<TType>::setFirstToMin(
   const CDiscreteInterval& Interval) {
-  First_ = std::min(First_, Interval.First_);
+  CBase::First_ = std::min(CBase::First_, Interval.First_);
 }
 //---------------------------------------------------------------------------
 // Definitions of Global Functions

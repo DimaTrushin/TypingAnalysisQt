@@ -132,11 +132,14 @@ void CThreadPool::wait() {
 }
 //---------------------------------------------------------------------------------
 
+// replace size_t with DWORD = unsigned long
 void CThreadPool::setNumberOfThreads(size_t maximum, size_t minimum) {
   assert(maximum >= minimum);
   assert(maximum > 0);
+  // replace size_t with DWORD = unsigned long
   SetThreadpoolThreadMaximum(Pool_, maximum);
   ThreadMaximum_ = maximum;
+  // replace size_t with DWORD = unsigned long
   BOOL result = SetThreadpoolThreadMinimum(Pool_, minimum);
   if (result == FALSE)
     throw std::exception("SetThreadpoolThreadMinimum failed\n");
@@ -165,7 +168,9 @@ size_t CThreadPool::getOptimalAmountOfThreads() {
 void CThreadPool::initialize() {
   assert(ThreadMaximum_ >= ThreadMinimum_);
   assert(ThreadMaximum_ > 0);
+  // replace size_t with DWORD = unsigned long
   SetThreadpoolThreadMaximum(Pool_, ThreadMaximum_);
+  // replace size_t with DWORD = unsigned long
   BOOL result = SetThreadpoolThreadMinimum(Pool_, ThreadMinimum_);
   if (result == FALSE)
     throw std::exception("SetThreadpoolThreadMinimum failed\n");

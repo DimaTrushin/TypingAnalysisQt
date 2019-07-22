@@ -60,27 +60,27 @@ bool CFinger::isRightHand() const {
 //---------------------------------------------------------------------------
 
 bool CFinger::isThumb() const {
-  return ((FingerData_ << 1) >> 1) == CHandFingerFlags::Thumb;
+  return getFinger() == CHandFingerFlags::Thumb;
 }
 //---------------------------------------------------------------------------
 
 bool CFinger::isIndex() const {
-  return ((FingerData_ << 1) >> 1) == CHandFingerFlags::Index;
+  return getFinger() == CHandFingerFlags::Index;
 }
 //---------------------------------------------------------------------------
 
 bool CFinger::isMiddle() const {
-  return ((FingerData_ << 1) >> 1) == CHandFingerFlags::Middle;
+  return getFinger() == CHandFingerFlags::Middle;
 }
 //---------------------------------------------------------------------------
 
 bool CFinger::isRing() const {
-  return ((FingerData_ << 1) >> 1) == CHandFingerFlags::Ring;
+  return getFinger() == CHandFingerFlags::Ring;
 }
 //---------------------------------------------------------------------------
 
 bool CFinger::isPinky() const {
-  return ((FingerData_ << 1) >> 1) == CHandFingerFlags::Pinky;
+  return getFinger() == CHandFingerFlags::Pinky;
 }
 //---------------------------------------------------------------------------
 
@@ -90,7 +90,7 @@ CFinger::CHFType CFinger::getHand() const {
 //---------------------------------------------------------------------------
 
 CFinger::CHFType CFinger::getFinger() const {
-  return (FingerData_ << 1) >> 1;
+  return (FingerData_ & 127);
 }
 //---------------------------------------------------------------------------
 
@@ -100,14 +100,14 @@ CFinger::CHFType CFinger::getFingerData() const {
 //---------------------------------------------------------------------------
 
 void CFinger::changeHandTo(CHFType HandFlag) {
-  assert(((HandFlag << 1) >> 1) == 0);
-  FingerData_ = ((FingerData_ << 1) >> 1) ^ HandFlag;
+  assert((HandFlag & 127) == 0);
+  FingerData_ = getFinger() | HandFlag;
 }
 //---------------------------------------------------------------------------
 
 void CFinger::changeFingerTo(CHFType FingerFlag) {
   assert(FingerFlag <= 4);
-  FingerData_ = (FingerData_ & 128) | FingerFlag;
+  FingerData_ = getHand() | FingerFlag;
 }
 //---------------------------------------------------------------------------
 

@@ -11,7 +11,7 @@ namespace NSApplication {
 // Definition of CApplication::StandardApplicationCallback
 //---------------------------------------------------------------------------
 
-WNDPROC CApplicationImpl::StandardApplicationCallback = NULL;
+WNDPROC CApplicationImpl::StandardApplicationCallback = nullptr;
 //---------------------------------------------------------------------------
 // Definition of CApplication
 //---------------------------------------------------------------------------
@@ -30,9 +30,9 @@ void CApplicationImpl::hookApplicationToCallback() {
 
 void CApplicationImpl::substituteApplicationCallback() {
   StandardApplicationCallback =
-    (WNDPROC)SetWindowLong( getHandle(),
-                            GWL_WNDPROC,
-                            (LONG_PTR)StaticApplicationCallback);
+    (WNDPROC)SetWindowLongPtrA(getHandle(),
+                               GWLP_WNDPROC,
+                               (LONG_PTR)StaticApplicationCallback);
 }
 //---------------------------------------------------------------------------
 

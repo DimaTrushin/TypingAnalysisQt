@@ -2,44 +2,44 @@
 // Defines
 //---------------------------------------------------------------------------
 
-//#define __DISCRETE_INTERVAL_TEST__
-//#define __KEY_INTERVAL_TEST__
-//#define __KEY_FILTER_TEST__
-//#define __LOW_LEVEL_KEYBOARD_TEST__
-//#define __CACHE_BLOCKS_TEST__
-//#define __RAW_BUFFER_TO_SEANCE_CONVERTER__
-//#define __FINGER_LAYOUT_TEST__
-//#define __SESSION_CACHER_TEST__
+//#define DISCRETE_INTERVAL_TEST
+//#define KEY_INTERVAL_TEST
+//#define KEY_FILTER_TEST
+//#define LOW_LEVEL_KEYBOARD_TEST
+//#define CACHE_BLOCKS_TEST
+//#define RAW_BUFFER_TO_SEANCE_CONVERTER
+//#define FINGER_LAYOUT_TEST
+//#define SESSION_CACHER_TEST
 //---------------------------------------------------------------------------
 // Include
 //---------------------------------------------------------------------------
 
 #include "GlobalTester.h"
-#ifdef __DISCRETE_INTERVAL_TEST__
+#ifdef DISCRETE_INTERVAL_TEST
 #include "Library/DiscreteInterval.h"
 #endif
-#ifdef __KEY_INTERVAL_TEST__
+#ifdef KEY_INTERVAL_TEST
 #include "Keyboard/KeyFilter.h"
 #endif
-#ifdef __KEY_FILTER_TEST__
+#ifdef KEY_FILTER_TEST
 #include "Keyboard/KeyFilter.h"
 #endif
-#ifdef __LOW_LEVEL_KEYBOARD_TEST__
+#ifdef LOW_LEVEL_KEYBOARD_TEST
 #include "Keyboard/LowLevelKeyboard.h"
 #endif
-#ifdef __CACHE_BLOCKS_TEST__
+#ifdef CACHE_BLOCKS_TEST
 #include "Kernel/Session.h"
 #include "Kernel/TextDataTree.h"
 #include "Kernel/SessionToTreeConverter.h"
 #include "Kernel/SessionCacher.h"
 #endif
-#ifdef __RAW_BUFFER_TO_SEANCE_CONVERTER__
+#ifdef RAW_BUFFER_TO_SEANCE_CONVERTER
 #include "Kernel/RawBufferToSeanceConverter.h"
 #endif
-#ifdef __FINGER_LAYOUT_TEST__
+#ifdef FINGER_LAYOUT_TEST
 #include "Keyboard/FingerLayout.h"
 #endif
-#ifdef __SESSION_CACHER_TEST__
+#ifdef SESSION_CACHER_TEST
 #include "Kernel/SessionCacher.h"
 #include "Keyboard/VKCode.h"
 #endif
@@ -58,7 +58,7 @@ CGlobalTester::CGlobalTester() {
 // Definition of CDiscreteIntervalTester
 //---------------------------------------------------------------------------
 
-#ifdef __DISCRETE_INTERVAL_TEST__
+#ifdef DISCRETE_INTERVAL_TEST
 using namespace NSLibrary;
 class CDiscreteIntervalTester {
 public:
@@ -175,7 +175,7 @@ private:
 //---------------------------------------------------------------------------
 // Definition of CKeyIntervalTester
 //---------------------------------------------------------------------------
-#ifdef __KEY_INTERVAL_TEST__
+#ifdef KEY_INTERVAL_TEST
 using namespace NSKeyboard;
 class CKeyIntervalTester {
 public:
@@ -223,7 +223,7 @@ private:
 // Definition of CKeyFilterTester
 //---------------------------------------------------------------------------
 
-#ifdef __KEY_FILTER_TEST__
+#ifdef KEY_FILTER_TEST
 using namespace NSKeyboard;
 class CKeyFilterTester {
 public:
@@ -272,7 +272,7 @@ private:
 // Definition of CLowLevelKeyboardTester
 //---------------------------------------------------------------------------
 
-#ifdef __LOW_LEVEL_KEYBOARD_TEST__
+#ifdef LOW_LEVEL_KEYBOARD_TEST
 using namespace NSKeyboard;
 class CLowLevelKeyboardTester {
 public:
@@ -298,7 +298,7 @@ private:
 // Definition of CCacheBlocksTester
 //---------------------------------------------------------------------------
 
-#ifdef __CACHE_BLOCKS_TEST__
+#ifdef CACHE_BLOCKS_TEST
 using namespace NSLibrary;
 using namespace NSKernel;
 using namespace NSKeyboard;
@@ -437,7 +437,7 @@ private:
 // Definition of CLowLevelKeyboardTester
 //---------------------------------------------------------------------------
 
-#ifdef __RAW_BUFFER_TO_SEANCE_CONVERTER__
+#ifdef RAW_BUFFER_TO_SEANCE_CONVERTER
 using namespace NSKeyboard;
 using namespace NSKernel;
 class CRawBufferToSeanceConverterTest {
@@ -475,7 +475,7 @@ private:
 } RawBufferToSeanceConverterTest;
 #endif
 //---------------------------------------------------------------------------
-#ifdef __FINGER_LAYOUT_TEST__
+#ifdef FINGER_LAYOUT_TEST
 using namespace NSKeyboard;
 class CFingerLayoutTest {
 public:
@@ -491,7 +491,18 @@ public:
     for(const auto& finger : Layout) {
       qDebug() << " finger.size() = " << finger.size();
     }
-
+    CFinger SomeFinger;
+    printFinger(SomeFinger);
+    SomeFinger.changeHandTo(CHandFingerFlags::Right);
+    printFinger(SomeFinger);
+    SomeFinger.changeFingerTo(CHandFingerFlags::Pinky);
+    printFinger(SomeFinger);
+    SomeFinger.changeHandTo(CHandFingerFlags::Left);
+    printFinger(SomeFinger);
+  }
+  void printFinger(const CFinger& Finger) {
+    qDebug() << "FingerFata = " << Finger.getFingerData();
+    qDebug() << "Hand = " << Finger.getHand() << " Finger = " << Finger.getFinger();
   }
   void addNewLine() {
     DebugText_ += '\n';
@@ -505,7 +516,7 @@ private:
 #endif
 //---------------------------------------------------------------------------
 
-#ifdef __SESSION_CACHER_TEST__
+#ifdef SESSION_CACHER_TEST
 using namespace NSKernel;
 using namespace NSKeyboard;
 class CSessionCacherTest {
@@ -535,7 +546,6 @@ public:
     qDebug() << "shift p all size = " << SessionCacher.getShiftsData().getSize(ETextMode::Printed, ECapitalMode::All);
     qDebug() << "shift p ess size = " << SessionCacher.getShiftsData().getSize(ETextMode::Printed, ECapitalMode::Essential);
     qDebug() << "shift p on size = " << SessionCacher.getShiftsData().getSize(ETextMode::Printed, ECapitalMode::Non);
-
   }
   void addNewLine() {
     DebugText_ += '\n';

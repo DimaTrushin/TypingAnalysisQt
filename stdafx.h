@@ -26,7 +26,7 @@
 #include <mutex>
 #include <exception>
 #include <thread>
-#include <windows.h>
+#include <Windows.h>
 
 #undef max
 #undef min

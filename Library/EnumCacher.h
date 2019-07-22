@@ -203,7 +203,7 @@ struct CParametersPack {};
 //---------------------------------------------------------------------------
 
 template<class TValue, class TParametersPack>
-class CEnumCacherGetter;
+struct CEnumCacherGetter;
 //---------------------------------------------------------------------------
 
 template<class TValue, class... TParameters>

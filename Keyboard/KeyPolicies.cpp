@@ -207,7 +207,7 @@ CKeyVKCodeLangLayoutBase::
 CKeyVKCodeLangLayoutBase(CVKCodeType VKCode,
                          HKL Layout)
   : CKeyVKCodeBase(VKCode),
-#ifdef __STORE_LAYOUT_AS_HKL__
+#ifdef STORE_LAYOUT_AS_HKL
     Layout_(Layout) {
 #else
     Layout_(HandleToLong(Layout)) {
@@ -234,7 +234,7 @@ CKeyVKCodeLangLayoutBase::getScanCode() const {
 //---------------------------------------------------------------------------
 
 HKL CKeyVKCodeLangLayoutBase::getLayout() const {
-#ifdef __STORE_LAYOUT_AS_HKL__
+#ifdef STORE_LAYOUT_AS_HKL
   return Layout_;
 #else
   return reinterpret_cast<HKL>(LongToHandle(Layout_));

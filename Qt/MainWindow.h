@@ -28,7 +28,7 @@ namespace NSQt {
 class CMainWindow : public QMainWindow {
   Q_OBJECT
 public:
-  explicit CMainWindow(QWidget* parent = 0);
+  explicit CMainWindow(QWidget* parent = nullptr);
   ~CMainWindow();
 signals:
   void onTextBrowserPerformanceLogVisible();

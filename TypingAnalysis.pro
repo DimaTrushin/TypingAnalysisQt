@@ -17,11 +17,21 @@ LIBS += User32.lib
 
 # The following define allows linkage against boost
 win32-msvc* {
-  INCLUDEPATH += C:/boost/boost_1_67_0/boost_msvc2015/include/boost-1_67
-  LIBS += "-LC:/boost/boost_1_67_0/boost_msvc2015/lib" \
-          #-llibboost_date_time-vc140-mt-gd-x32-1_67 \
-          #-llibboost_system-vc140-mt-gd-x32-1_67
+# EnvironmentalVariables.txt must define the following variables
+# BOOSTHEADERSPATH -- path to boost headers
+# BOOSTLIB64PATH -- path to boost libs for x64
+# BOOSTLIB86PATH -- path to boost libs for x86
+  !include(EnvironmentalVariables.txt) {
+    message("No boost path settings")
+  }
+  INCLUDEPATH += $${BOOSTHEADERSPATH}
+  # The following defines choose appropriate libraries depending on kit selected
+   CONFIG(STATIC_x86_RELEASE,STATIC_x86_RELEASE|STATIC_x64_RELEASE|STATIC_x64_DEBUG|DINAMIC_x64_DEBUG): LIBS += "-L"$${BOOSTLIB86PATH}
+   CONFIG(STATIC_x64_RELEASE,STATIC_x86_RELEASE|STATIC_x64_RELEASE|STATIC_x64_DEBUG|DINAMIC_x64_DEBUG): LIBS += "-L"$${BOOSTLIB64PATH}
+   CONFIG(STATIC_x64_DEBUG,STATIC_x86_RELEASE|STATIC_x64_RELEASE|STATIC_x64_DEBUG|DINAMIC_x64_DEBUG): LIBS += "-L"$${BOOSTLIB64PATH}
+   CONFIG(DINAMIC_x64_DEBUG,STATIC_x86_RELEASE|STATIC_x64_RELEASE|STATIC_x64_DEBUG|DINAMIC_x64_DEBUG): LIBS += "-L"$${BOOSTLIB64PATH}
 }
+
 
 SOURCES += \
     main.cpp \

@@ -303,56 +303,56 @@ CApproximationBase<TModeDefinitions>::getChunkOfMeanData(
 template<class TApproximationBase>
 double CApproximationDirectEvaluate<TApproximationBase>::
 evaluate0(double argument) const {
-  return evaluateMethod(&evaluate0At, argument);
+  return evaluateMethod(&CApproximationDirectEvaluate::evaluate0At, argument);
 }
 //---------------------------------------------------------------------------
 
 template<class TApproximationBase>
 double CApproximationDirectEvaluate<TApproximationBase>::
 evaluate1(double argument) const {
-  return evaluateMethod(&evaluate1At, argument);
+  return evaluateMethod(&CApproximationDirectEvaluate::evaluate1At, argument);
 }
 //---------------------------------------------------------------------------
 
 template<class TApproximationBase>
 double CApproximationDirectEvaluate<TApproximationBase>::
 evaluate2(double argument) const {
-  return evaluateMethod(&evaluate2At, argument);
+  return evaluateMethod(&CApproximationDirectEvaluate::evaluate2At, argument);
 }
 //---------------------------------------------------------------------------
 
 template<class TApproximationBase>
 double CApproximationDirectEvaluate<TApproximationBase>::
 evaluate3(double argument) const {
-  return evaluateMethod(&evaluate3At, argument);
+  return evaluateMethod(&CApproximationDirectEvaluate::evaluate3At, argument);
 }
 //---------------------------------------------------------------------------
 
 template<class TApproximationBase>
 double CApproximationDirectEvaluate<TApproximationBase>::
 evaluateUniform0(double argument) const {
-  return evaluateMethod(&evaluateUniform0At, argument);
+  return evaluateMethod(&CApproximationDirectEvaluate::evaluateUniform0At, argument);
 }
 //---------------------------------------------------------------------------
 
 template<class TApproximationBase>
 double CApproximationDirectEvaluate<TApproximationBase>::
 evaluateUniform1(double argument) const {
-  return evaluateMethod(&evaluateUniform1At, argument);
+  return evaluateMethod(&CApproximationDirectEvaluate::evaluateUniform1At, argument);
 }
 //---------------------------------------------------------------------------
 
 template<class TApproximationBase>
 double CApproximationDirectEvaluate<TApproximationBase>::
 evaluateUniform2(double argument) const {
-  return evaluateMethod(&evaluateUniform2At, argument);
+  return evaluateMethod(&CApproximationDirectEvaluate::evaluateUniform2At, argument);
 }
 //---------------------------------------------------------------------------
 
 template<class TApproximationBase>
 double CApproximationDirectEvaluate<TApproximationBase>::
 evaluateUniform3(double argument) const {
-  return evaluateMethod(&evaluateUniform3At, argument);
+  return evaluateMethod(&CApproximationDirectEvaluate::evaluateUniform3At, argument);
 }
 //---------------------------------------------------------------------------
 

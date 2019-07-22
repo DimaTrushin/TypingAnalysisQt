@@ -73,6 +73,7 @@ protected:
 
 template<class TAccessible, class TID>
 class CAnyGlobalAccess : public CAnyGlobalAccessible<TAccessible, TID> {
+  using CBase = CAnyGlobalAccessible<TAccessible, TID>;
 public:
   inline CAnyGlobalAccess();
 };
@@ -82,6 +83,7 @@ public:
 
 template<class TAccessible, class TID>
 class CAnyGlobalInitializer : public CAnyGlobalAccessible<TAccessible, TID> {
+  using CBase = CAnyGlobalAccessible<TAccessible, TID>;
 public:
   template<class... TArg>
   inline CAnyGlobalInitializer(TArg&&... Arg);
@@ -132,7 +134,7 @@ const TAccessible& CAnyGlobalAccessible<TAccessible, TID>::cref() const {
 
 template<class TAccessible, class TID>
 CAnyGlobalAccess<TAccessible, TID>::CAnyGlobalAccess() {
-  assert(gObject_);
+  assert(CBase::gObject_);
 }
 //---------------------------------------------------------------------------
 // Definition of CAnyGlobalInitializer
@@ -142,8 +144,8 @@ template<class TAccessible, class TID>
 template<class... TArg>
 CAnyGlobalInitializer<TAccessible, TID>::
 CAnyGlobalInitializer(TArg&&... Arg) {
-  if(!gObject_)
-    gObject_ = std::make_unique<TAccessible>(std::forward<TArg>(Arg)...);
+  if(!CBase::gObject_)
+    CBase::gObject_ = std::make_unique<TAccessible>(std::forward<TArg>(Arg)...);
 }
 //---------------------------------------------------------------------------
 } // NSLibrary

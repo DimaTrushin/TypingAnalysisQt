@@ -35,6 +35,7 @@ template<int Number, int ResidueMod2 = ResidueMod2<Number>::Result>
 class AuxiliaryPower {
 public:
   inline static double evaluate(double base, double semiResult) {
+    (void)base;
     return semiResult;
   }
 };
@@ -144,6 +145,7 @@ public:
   static constexpr EFunctionType FunctionType = EFunctionType::Constant;
 
   inline static double evaluate(double argument) {
+    (void)argument;
     return static_cast<double>(constant);
   }
 };

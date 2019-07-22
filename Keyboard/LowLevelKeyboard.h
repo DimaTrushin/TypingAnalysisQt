@@ -5,7 +5,7 @@
 // Include
 //---------------------------------------------------------------------------
 
-#include <windows.h> //pch
+#include <Windows.h> //pch
 //---------------------------------------------------------------------------
 
 namespace NSApplication {
@@ -17,7 +17,7 @@ namespace NSKeyboard {
 class CSafeRawBuffer {
 public:
   CSafeRawBuffer();
-  CSafeRawBuffer(size_t Size);
+  CSafeRawBuffer(unsigned int Size);
   ~CSafeRawBuffer();
   CSafeRawBuffer(const CSafeRawBuffer&) = delete;
   CSafeRawBuffer(CSafeRawBuffer&& other);
@@ -29,14 +29,14 @@ public:
   inline const RAWINPUT& getRAWINPUT() const;
   inline LPBYTE getBuffer() const;
   inline bool isDefined() const;
-  inline size_t getSize() const;
+  inline unsigned int getSize() const;
   // resize does not make the buffer smaller!!!
-  inline void resizeIfSmaller(size_t newSize);
+  inline void resizeIfSmaller(unsigned int newSize);
   inline void clear();
 
 private:
   LPBYTE pBuffer_;
-  size_t size_;
+  unsigned int size_;
 };
 //---------------------------------------------------------------------------
 // Declaration of CLowLevelKeyboard
@@ -58,7 +58,7 @@ public:
 private:
   inline void Initialize(HWND ReceiverHandle);
 
-  inline size_t getRawDataSize(LPARAM lParam) const;
+  inline unsigned int getRawDataSize(LPARAM lParam) const;
   inline void readRawInputData(LPARAM lParam) const;
   inline void setDeviceClassToKeyboardClass();
   inline void setDeviceToKeyboard();

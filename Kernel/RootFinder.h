@@ -276,7 +276,7 @@ CUpToSecondDerivativeFunctor<derivative, TApproximation>::operator()(
   return boost::math::make_tuple(
            pApproximation_->template evaluate<derivative>(argument),
            pApproximation_->template evaluate<derivative + 1>(argument),
-           pApproximation->template evaluate<derivative + 2>(argument));
+           pApproximation_->template evaluate<derivative + 2>(argument));
 }
 //---------------------------------------------------------------------------
 // Definition of CNewtonRootFinderDirectEvaluation

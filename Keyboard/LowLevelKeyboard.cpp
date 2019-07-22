@@ -18,7 +18,7 @@ CSafeRawBuffer::CSafeRawBuffer()
 }
 //---------------------------------------------------------------------------
 
-CSafeRawBuffer::CSafeRawBuffer(size_t Size)
+CSafeRawBuffer::CSafeRawBuffer(unsigned int Size)
   : pBuffer_(new BYTE[Size]),
     size_(Size) {
   if (!isDefined())
@@ -50,16 +50,25 @@ CSafeRawBuffer& CSafeRawBuffer::operator=(CSafeRawBuffer&& other) {
 //---------------------------------------------------------------------------
 
 RAWINPUT* CSafeRawBuffer::getPRAWINPUT() {
+  // here I increase required alignment from 1 to 4 on x86
+  // and from 1 to 8 on x64
+  // I need to align pBuffer_ with respect to std::align_val_t<RAWINPUT*>
   return (RAWINPUT*)pBuffer_;
 }
 //---------------------------------------------------------------------------
 
 RAWINPUT& CSafeRawBuffer::getRAWINPUT() {
+  // here I increase required alignment from 1 to 4 on x86
+  // and from 1 to 8 on x64
+  // I need to align pBuffer_ with respect to std::align_val_t<RAWINPUT*>
   return *((RAWINPUT*)pBuffer_);
 }
 //---------------------------------------------------------------------------
 
 const RAWINPUT& CSafeRawBuffer::getRAWINPUT() const {
+  // here I increase required alignment from 1 to 4 on x86
+  // and from 1 to 8 on x64
+  // I need to align pBuffer_ with respect to std::align_val_t<RAWINPUT*>
   return *((RAWINPUT*)pBuffer_);
 }
 //---------------------------------------------------------------------------
@@ -76,12 +85,12 @@ bool CSafeRawBuffer::isDefined() const {
 }
 //---------------------------------------------------------------------------
 
-size_t CSafeRawBuffer::getSize() const {
+unsigned int CSafeRawBuffer::getSize() const {
   return size_;
 }
 //---------------------------------------------------------------------------
 
-void CSafeRawBuffer::resizeIfSmaller(size_t newSize) {
+void CSafeRawBuffer::resizeIfSmaller(unsigned int newSize) {
   if (isDefined())
     if (newSize <= size_)
       return;
@@ -122,8 +131,8 @@ void CLowLevelKeyboard::Initialize(HWND ReceiverHandle) {
 }
 //---------------------------------------------------------------------------
 
-size_t CLowLevelKeyboard::getRawDataSize(LPARAM lParam) const {
-  size_t dwSize;
+unsigned int CLowLevelKeyboard::getRawDataSize(LPARAM lParam) const {
+  unsigned int dwSize;
   GetRawInputData((HRAWINPUT)lParam,
                   RID_INPUT,
                   nullptr,
@@ -134,7 +143,7 @@ size_t CLowLevelKeyboard::getRawDataSize(LPARAM lParam) const {
 //---------------------------------------------------------------------------
 
 void CLowLevelKeyboard::readRawInputData( LPARAM lParam) const {
-  size_t bufferSize = RawInputBuffer_.getSize();
+  unsigned int bufferSize = RawInputBuffer_.getSize();
   if (GetRawInputData((HRAWINPUT)lParam,
                       RID_INPUT,
                       RawInputBuffer_.getBuffer(),

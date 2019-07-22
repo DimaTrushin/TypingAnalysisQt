@@ -176,7 +176,7 @@ size_t CFunctionGridBase::CFGParallelFor::getChunk(
   if (samples == 0)
     ++samples;
   size_t empiricalBoundary = (threadCoefficient * (end - begin)) / samples;
-  return std::max(std::min(threadBoundary, empiricalBoundary), 1u);
+  return std::max<size_t>(std::min(threadBoundary, empiricalBoundary), 1);
 }
 //---------------------------------------------------------------------------
 } // NSKernel

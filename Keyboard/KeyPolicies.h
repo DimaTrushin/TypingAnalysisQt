@@ -4,12 +4,12 @@
 // Defines
 //---------------------------------------------------------------------------
 
-#define __STORE_LAYOUT_AS_HKL__
+#define STORE_LAYOUT_AS_HKL
 //---------------------------------------------------------------------------
 // Include
 //---------------------------------------------------------------------------
 
-#include <windows.h> //pch
+#include <Windows.h> //pch
 #include "VKCode.h"
 #include "../TimeDefinitions.h"
 //---------------------------------------------------------------------------
@@ -89,12 +89,12 @@ public:
   HKL getLayout() const;
 protected:
   ~CKeyVKCodeLangLayoutBase() = default;
-#ifdef __STORE_LAYOUT_AS_HKL__
+#ifdef STORE_LAYOUT_AS_HKL
   HKL Layout_;
 #else
   long Layout_;
 #endif
-  static constexpr HKL kDefaultLayout = 0;
+  static constexpr HKL kDefaultLayout = nullptr;
   using CKeyVKCodeBase::kDefaultVKCode;
 };
 //---------------------------------------------------------------------------

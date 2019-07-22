@@ -880,7 +880,7 @@ CBaseIterator(CBaseIterator&& other)
 
 template<class TType>
 template<class TIteratorDefines>
-typename CVTree<TType>::CBaseIterator<TIteratorDefines>&
+typename CVTree<TType>::template CBaseIterator<TIteratorDefines>&
 CVTree<TType>::CBaseIterator<TIteratorDefines>::
 operator=(const CBaseIterator& other) {
   return *this = CBaseIterator(other);
@@ -889,7 +889,7 @@ operator=(const CBaseIterator& other) {
 
 template<class TType>
 template<class TIteratorDefines>
-typename CVTree<TType>::CBaseIterator<TIteratorDefines>&
+typename CVTree<TType>::template CBaseIterator<TIteratorDefines>&
 CVTree<TType>::CBaseIterator<TIteratorDefines>::
 operator=(CBaseIterator&& other) {
   Host_ = other.Host_;
@@ -1946,12 +1946,12 @@ template <template<class> class TReferenceLogic,
           template<class> class TTravellingLogic,
           class TIteratorDefines>
 typename
-CVTree<TType>::
+CVTree<TType>::template
 CIteratorTemplate<TReferenceLogic,
                   TTravellingLogic,
                   TIteratorDefines>&
-                  CVTree<TType>::
-                  CIteratorTemplate<TReferenceLogic,
+CVTree<TType>::
+CIteratorTemplate<TReferenceLogic,
                   TTravellingLogic,
                   TIteratorDefines>::
 operator++() {
@@ -1965,12 +1965,12 @@ template <template<class> class TReferenceLogic,
           template<class> class TTravellingLogic,
           class TIteratorDefines>
 typename
-CVTree<TType>::
+CVTree<TType>::template
 CIteratorTemplate<TReferenceLogic,
                   TTravellingLogic,
                   TIteratorDefines>
-                  CVTree<TType>::
-                  CIteratorTemplate<TReferenceLogic,
+CVTree<TType>::
+CIteratorTemplate<TReferenceLogic,
                   TTravellingLogic,
                   TIteratorDefines>::
 operator++(int) {
@@ -1985,12 +1985,12 @@ template <template<class> class TReferenceLogic,
           template<class> class TTravellingLogic,
           class TIteratorDefines>
 typename
-CVTree<TType>::
+CVTree<TType>::template
 CIteratorTemplate<TReferenceLogic,
                   TTravellingLogic,
                   TIteratorDefines>&
-                  CVTree<TType>::
-                  CIteratorTemplate<TReferenceLogic,
+CVTree<TType>::
+CIteratorTemplate<TReferenceLogic,
                   TTravellingLogic,
                   TIteratorDefines>::
 operator+=(difference_type Difference) {
@@ -2004,12 +2004,12 @@ template <template<class> class TReferenceLogic,
           template<class> class TTravellingLogic,
           class TIteratorDefines>
 typename
-CVTree<TType>::
+CVTree<TType>::template
 CIteratorTemplate<TReferenceLogic,
                   TTravellingLogic,
                   TIteratorDefines>&
-                  CVTree<TType>::
-                  CIteratorTemplate<TReferenceLogic,
+CVTree<TType>::
+CIteratorTemplate<TReferenceLogic,
                   TTravellingLogic,
                   TIteratorDefines>::
 operator--() {
@@ -2023,12 +2023,12 @@ template <template<class> class TReferenceLogic,
           template<class> class TTravellingLogic,
           class TIteratorDefines>
 typename
-CVTree<TType>::
+CVTree<TType>::template
 CIteratorTemplate<TReferenceLogic,
                   TTravellingLogic,
                   TIteratorDefines>
-                  CVTree<TType>::
-                  CIteratorTemplate<TReferenceLogic,
+CVTree<TType>::
+CIteratorTemplate<TReferenceLogic,
                   TTravellingLogic,
                   TIteratorDefines>::
 operator--(int) {
@@ -2043,12 +2043,12 @@ template <template<class> class TReferenceLogic,
           template<class> class TTravellingLogic,
           class TIteratorDefines>
 typename
-CVTree<TType>::
+CVTree<TType>::template
 CIteratorTemplate<TReferenceLogic,
                   TTravellingLogic,
                   TIteratorDefines>&
-                  CVTree<TType>::
-                  CIteratorTemplate<TReferenceLogic,
+CVTree<TType>::
+CIteratorTemplate<TReferenceLogic,
                   TTravellingLogic,
                   TIteratorDefines>::
 operator-=(difference_type Difference) {
@@ -2064,13 +2064,13 @@ template <template<class> class TReferenceLogic,
 template <template<class> class TOtherReferenceLogic,
           class TOtherIteratorDefines>
 typename
-CVTree<TType>::
+CVTree<TType>::template
 CIteratorTemplate<TReferenceLogic,
                   TTravellingLogic,
                   TIteratorDefines>::
-                  difference_type
-                  CVTree<TType>::
-                  CIteratorTemplate<TReferenceLogic,
+difference_type
+CVTree<TType>::
+CIteratorTemplate<TReferenceLogic,
                   TTravellingLogic,
                   TIteratorDefines>::
                   operator-(const CIteratorTemplate<
@@ -2086,13 +2086,13 @@ template <template<class> class TReferenceLogic,
           template<class> class TTravellingLogic,
           class TIteratorDefines>
 typename
-CVTree<TType>::
+CVTree<TType>::template
 CIteratorTemplate<TReferenceLogic,
                   TTravellingLogic,
                   TIteratorDefines>::
-                  CChildIterator
-                  CVTree<TType>::
-                  CIteratorTemplate<TReferenceLogic,
+CChildIterator
+CVTree<TType>::
+CIteratorTemplate<TReferenceLogic,
                   TTravellingLogic,
                   TIteratorDefines>::
 FirstChild() const {
@@ -2105,13 +2105,13 @@ template <template<class> class TReferenceLogic,
           template<class> class TTravellingLogic,
           class TIteratorDefines>
 typename
-CVTree<TType>::
+CVTree<TType>::template
 CIteratorTemplate<TReferenceLogic,
                   TTravellingLogic,
                   TIteratorDefines>::
-                  CChildIterator
-                  CVTree<TType>::
-                  CIteratorTemplate<TReferenceLogic,
+CChildIterator
+CVTree<TType>::
+CIteratorTemplate<TReferenceLogic,
                   TTravellingLogic,
                   TIteratorDefines>::
 LastChild() const {
