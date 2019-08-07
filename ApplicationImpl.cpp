@@ -30,9 +30,9 @@ void CApplicationImpl::hookApplicationToCallback() {
 
 void CApplicationImpl::substituteApplicationCallback() {
   StandardApplicationCallback =
-    (WNDPROC)SetWindowLongPtrA(getHandle(),
-                               GWLP_WNDPROC,
-                               (LONG_PTR)StaticApplicationCallback);
+    (WNDPROC)SetWindowLongPtr(getHandle(),
+                              GWLP_WNDPROC,
+                              (LONG_PTR)StaticApplicationCallback);
 }
 //---------------------------------------------------------------------------
 
